@@ -1,0 +1,27 @@
+/* package whatever; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Ideone
+{
+    public static void main (String[] args) throws java.lang.Exception
+    {
+        Scanner sc = new Scanner(System.in);
+        int numCommands = sc.nextInt();
+        sc.nextLine();
+        while (numCommands > 0) {
+            String line = sc.nextLine();
+            String[] words = line.split(" ");
+            if (words[0].equals("Simon") && words[1].equals("says")) {
+                for (int i = 2; i < words.length; i++) {
+                    System.out.print(words[i] + " ");
+                }
+                System.out.print("\n");
+            }
+            numCommands--;
+        }
+    }
+}
