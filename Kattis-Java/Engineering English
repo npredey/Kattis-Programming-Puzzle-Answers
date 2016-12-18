@@ -1,0 +1,32 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import java.util.HashSet;
+import java.util.Scanner;
+
+/**
+ *
+ * @author nickpredey
+ */
+public class Tests {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        HashSet<String> set = new HashSet<>();
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String word = sc.next();
+            if (set.contains(word.toLowerCase())) {
+                System.out.print(". ");
+            } else {
+                set.add(word.toLowerCase());
+                System.out.print(word + " ");
+            }
+        }
+    }
+}
