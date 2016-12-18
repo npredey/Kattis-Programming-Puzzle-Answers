@@ -1,0 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author nickpredey
+ */
+public class Tests {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int rows = sc.nextInt();
+        int columns = sc.nextInt();
+        String line = sc.nextLine();
+        char[][] grid = new char[rows][columns];
+        for (int i = 0; i < rows; i++) {
+            line = sc.nextLine();
+            for (int j = 0; j < columns; j++) {
+                grid[i][j] = line.charAt(j);
+            }
+        }
+        int bottom = 0;
+        int searchInt = 0;
+        for (int i = 0; i < columns; i++) {
+            bottom = rows - 1;
+            searchInt = rows - 2;
+            if (grid[bottom][i] == '#' || grid[bottom][i] == 'a') {
+                while (searchInt > 0 && (grid[bottom][i] == '#' || grid[bottom][i] == 'a')) {
+                    bottom--;
+                    searchInt--;
+                }
+            }
+            while (searchInt >= 0) {
+                switch (grid[searchInt][i]) {
+                    case 'a':
+                        if (grid[bottom][i] == '.') {
+                            grid[searchInt][i] = grid[bottom][i];
+                            grid[bottom][i] = 'a';
+                            bottom--;
+                        }
+                        searchInt--;
+                        break;
+                    case '.':
+                        searchInt--;
+                        break;
+                    default:
+                        bottom = searchInt;
+                        searchInt--;
+                        if (grid[bottom][i] == '#' || grid[bottom][i] == 'a') {
+                            while (searchInt > 0 && (grid[bottom][i] == '#' || grid[bottom][i] == 'a')) {
+                                bottom--;
+                                searchInt--;
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(grid[i][j]);
+            }
+            System.out.println();
+        }
+    }
+}
