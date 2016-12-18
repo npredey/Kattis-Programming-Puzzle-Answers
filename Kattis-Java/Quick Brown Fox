@@ -1,0 +1,46 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+ 
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author nickpredey
+ */
+public class Tests {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int numPhrases = sc.nextInt();
+        sc.nextLine(); //need this to move the Scanner down
+        ArrayList<String> ascii = new ArrayList<>();
+        for (int i = 0; i < numPhrases; i++) {
+            ascii.clear();
+            for (int q = 97; q <= 122; q++) {
+                ascii.add(Character.toString((char) q));
+            }
+            String phrase = sc.nextLine().toLowerCase();
+            for (int j = 0; j < phrase.length(); j++) {
+                if (ascii.contains(Character.toString(phrase.charAt(j)))) {
+                    ascii.remove(Character.toString(phrase.charAt(j)));
+                }
+            }
+            if (ascii.isEmpty()) {
+                System.out.println("pangram");
+            } else {
+                System.out.print("missing ");
+                for (int k = 0; k < ascii.size(); k++) {
+                    System.out.print(ascii.get(k));
+                }
+                System.out.println();
+            }
+        }
+    }
+}
