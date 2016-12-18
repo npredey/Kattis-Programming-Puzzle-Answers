@@ -1,0 +1,46 @@
+/* package whatever; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.math.BigInteger;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Ideone
+{
+    public static void main (String[] args) throws java.lang.Exception
+    {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextLine()) {
+        String anagram = sc.nextLine();
+        HashMap<Character, Integer> nonDups = new HashMap<>();
+        for (int i = 0; i < anagram.length(); i++) {
+            if (!nonDups.containsKey(anagram.charAt(i))) {
+                nonDups.put(anagram.charAt(i), 1);
+            } else {
+                int value = nonDups.get(anagram.charAt(i));
+                int newVal = value + 1;
+                nonDups.replace(anagram.charAt(i), value, ++value); 
+            }
+        }
+        BigInteger denominator = BigInteger.ONE;
+        for (Character c : nonDups.keySet()) {
+            String number = factorial(nonDups.get(c));
+            BigInteger factorial = new BigInteger(number);
+            denominator = denominator.multiply(factorial);
+        }
+        String factorialValue = factorial(anagram.length());
+        BigInteger total = new BigInteger(factorialValue);
+        System.out.println(total.divide(denominator));
+        }
+        
+    }
+    
+    public static String factorial(int n) {
+       BigInteger fact = new BigInteger("1");
+       for (int i = 1; i <= n; i++) {
+           fact = fact.multiply(new BigInteger(i + ""));
+       }
+       return fact.toString();
+   }
+}
