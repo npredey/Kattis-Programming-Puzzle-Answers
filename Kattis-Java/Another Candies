@@ -1,0 +1,40 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+/**
+ *
+ * @author nickpredey
+ */
+public class Tests {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int numTestCases = sc.nextInt();
+        int numStudents = 0;
+        BigInteger candySum = BigInteger.ZERO;
+        while (numTestCases > 0) {
+            numStudents = sc.nextInt();
+            for (int i = 0; i < numStudents; i++) {
+                candySum = candySum.add(sc.nextBigInteger());
+            }
+            if (numStudents == 0) {
+                System.out.println("YES");
+            } else if (candySum.remainder(new BigInteger(Integer.toString(numStudents))) == BigInteger.ZERO) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }
+            numTestCases--;
+            candySum = BigInteger.ZERO;
+        }
+    }
+}
